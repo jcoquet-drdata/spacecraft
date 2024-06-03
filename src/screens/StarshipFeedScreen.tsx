@@ -1,7 +1,14 @@
-import React from 'react';
-import { FlatList, Image, StatusBar, StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import {
+  FlatList,
+  Image,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
-import { default as data } from '../../api/data.json';
+import useStarships from "~/hooks/useStarships";
 
 type ItemProps = {
   item: {
@@ -12,19 +19,29 @@ type ItemProps = {
 const Item = ({ item }: ItemProps) => (
   <View>
     <Text>{item.name}</Text>
-    <Image source={{ uri: `https://picsum.photos/seed/400/200` }} width={50} height={50} />
+    <Image
+      source={{ uri: `https://picsum.photos/seed/400/200` }}
+      width={50}
+      height={50}
+    />
   </View>
 );
 export const StarshipFeedScreen = () => {
+  const { isLoading, data } = useStarships();
+  if (isLoading) return <Text>loading...</Text>;
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <FlatList data={data.results} renderItem={({ item }) => <Item item={item} />} keyExtractor={item => item.id} />
+        <FlatList
+          data={data.results}
+          renderItem={({ item }) => <Item item={item} />}
+          keyExtractor={(item) => item.name}
+        />
       </View>
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

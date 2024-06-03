@@ -1,7 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
-import { Button, TextInput } from 'react-native-paper';
-import Header from './components/Header';
+import { StyleSheet, View } from "react-native";
+import { Button, TextInput } from "react-native-paper";
+import { StatusBar } from "expo-status-bar";
+
+import Header from "../components/Header";
 
 export default function LoginScreen() {
   return (
@@ -19,8 +20,8 @@ export default function LoginScreen() {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "#fff",
     flex: 1,
-    backgroundColor: '#fff',
     gap: 10,
     padding: 10,
   },
